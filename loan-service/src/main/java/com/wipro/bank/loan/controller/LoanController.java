@@ -23,33 +23,38 @@ public class LoanController {
     @Autowired
     private ILoanService service;
 
-    //  Process loan (approve/reject)
-    @PostMapping("/process")
-    public String process(@Valid @RequestBody LoanDto dto) {
-        return service.processLoan(dto);
+    // Apply for loan (approve / reject based on rules)
+    @PostMapping("/apply")
+    public String apply(@Valid @RequestBody LoanDto dto) {
+
+        return service.applyLoan(dto);
     }
 
-    //  Get loan history
+    // Get complete loan history of a customer
     @GetMapping("/customer/{customerId}")
     public List<LoanDto> getLoans(@PathVariable int customerId) {
-        return service.getCustomerLoans(customerId);
+
+        return service.getLoanHistory(customerId);
     }
 
-    //  Get active loans
+    // Get only active loans of a customer
     @GetMapping("/active/{customerId}")
     public List<LoanDto> getActive(@PathVariable int customerId) {
+
         return service.getActiveLoans(customerId);
     }
 
-    //  Get total loan amount
+    // Get total outstanding loan amount
     @GetMapping("/total/{customerId}")
     public double getTotal(@PathVariable int customerId) {
-        return service.getTotalActiveLoanAmount(customerId);
+
+        return service.getTotalOutstandingLoan(customerId);
     }
 
-    //  Close loan
+    // Close loan (after repayment)
     @PutMapping("/close/{loanId}")
     public String close(@PathVariable int loanId) {
+
         return service.closeLoan(loanId);
     }
 }

@@ -3,6 +3,7 @@ package com.wipro.bank.account.dto;
 import java.time.LocalDate;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,15 +18,19 @@ public class TransactionDto {
 
 	private int transactionId;
 
-	@NotBlank(message = "Transaction type required")
+	@NotBlank(message = "Transaction type is required")
+	@Pattern(regexp = "^(DEPOSIT|WITHDRAW)$",
+	message = "Transaction type must be DEPOSIT or WITHDRAW")
 	private String transactionType;
 	
-	@Positive(message = "Amount must be positive")
+
+	@Positive(message = "Amount must be greater than 0")
 	private double amount;
-	
-	
+
+
 	private LocalDate transactionDate;
-	
+
+	@NotBlank(message = "Account number is required")
 	private String accountNumber;
 
 

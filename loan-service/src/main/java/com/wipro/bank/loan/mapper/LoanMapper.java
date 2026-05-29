@@ -14,7 +14,8 @@ public class LoanMapper {
         dto.setLoanAmount(loan.getLoanAmount());
         dto.setInterestRate(loan.getInterestRate());
         dto.setLoanStatus(loan.getLoanStatus());
-        dto.setCustomerId(loan.getCustomerId()); // ✅ FIXED
+      
+        dto.setCustomerId(loan.getCustomerId());
 
         return dto;
     }
@@ -26,9 +27,8 @@ public class LoanMapper {
         loan.setLoanType(dto.getLoanType());
         loan.setLoanAmount(dto.getLoanAmount());
         loan.setInterestRate(dto.getInterestRate());
-        loan.setLoanStatus("ACTIVE");
-
-        loan.setCustomerId(dto.getCustomerId()); // ✅ FIXED
+      
+        loan.setCustomerId(dto.getCustomerId());
 
         return loan;
     }

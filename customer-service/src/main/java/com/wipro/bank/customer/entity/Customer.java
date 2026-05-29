@@ -14,6 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 
+
 @Entity
 public class Customer {
 
@@ -37,8 +38,8 @@ public class Customer {
 	 * //One customer can have multiple loans
 	 * 
 	 * @OneToMany(mappedBy = "customer") private List<Loan> loans;
-	 * 
 	 */
+
 
 
 }

@@ -15,23 +15,23 @@ public class AccountMapper {
 	    dto.setBalance(acc.getBalance());
 	    dto.setBranchName(acc.getBranchName());
 
-	    dto.setCustomerId(acc.getCustomerId()); // ✅ microservice fix
+	    dto.setCustomerId(acc.getCustomerId()); 
 
 	    return dto;
 	}
 
-    public static Account toEntity(AccountDto dto) {
-
-        Account acc = new Account();
-
-        acc.setAccountNumber(dto.getAccountNumber());
-        acc.setAccountType(dto.getAccountType());
-        acc.setBalance(dto.getBalance());
-        acc.setBranchName(dto.getBranchName());
-
-        acc.setCustomerId(dto.getCustomerId()); //  IMPORTANT
-        acc.setStatus("ACTIVE");
-
-        return acc;
-    }
+	public static Account toEntity(AccountDto dto) {
+	   
+		Account acc = new Account();
+	    
+	    acc.setCustomerId(dto.getCustomerId());
+	   
+	    acc.setAccountType(dto.getAccountType());
+	    acc.setBalance(dto.getBalance());
+	    acc.setBranchName(dto.getBranchName());
+	    
+	    acc.setStatus("ACTIVE");
+	    
+	    return acc;
+	}
 }

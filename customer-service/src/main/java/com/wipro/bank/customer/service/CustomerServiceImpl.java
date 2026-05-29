@@ -17,16 +17,21 @@ public class CustomerServiceImpl implements ICustomerService {
     @Autowired
     private CustomerRepository repo;
 
+    
+    //CREATE a new customer with default ACTIVE status
     @Override
     public CustomerDto createCustomer(CustomerDto dto) {
 
+    	// Convert incoming DTO to Entity before saving to DB
         Customer customer = CustomerMapper.toEntity(dto);
 
         Customer saved = repo.save(customer);
 
-        return CustomerMapper.toDto(saved);
+        return CustomerMapper.toDto(saved);  // Convert Entity back to DTO for response	
     }
 
+    
+    //FETCH customer by ID if not closed
     @Override
     public CustomerDto getCustomerById(int customerId) {
 
@@ -35,9 +40,12 @@ public class CustomerServiceImpl implements ICustomerService {
         if (c == null || "CLOSED".equals(c.getStatus()))
             return null;
 
-        return CustomerMapper.toDto(c);
+        
+        return CustomerMapper.toDto(c);    // Convert Entity to DTO before returning response
     }
 
+    
+    //GET all active customers
     @Override
     public List<CustomerDto> getAllCustomers() {
 
@@ -49,12 +57,15 @@ public class CustomerServiceImpl implements ICustomerService {
             if ("CLOSED".equals(c.getStatus()))
                 continue;
 
-            result.add(CustomerMapper.toDto(c)); // ✅ clean
+       
+            result.add(CustomerMapper.toDto(c));   // Convert each Entity to DTO
         }
 
         return result;
     }
 
+    
+    //UPDATE customer details
     @Override
     public CustomerDto updateCustomer(int customerId, CustomerDto dto) {
 
@@ -63,6 +74,13 @@ public class CustomerServiceImpl implements ICustomerService {
         if (c == null || "CLOSED".equals(c.getStatus()))
             return null;
 
+
+		/*
+		 * Since this is UPDATE operation, 
+		 * we modify existing entity instead of creating
+		 * a new one using mapper 
+		 */
+
         c.setCustomerName(dto.getCustomerName());
         c.setMobile(dto.getMobile());
         c.setEmail(dto.getEmail());
@@ -70,9 +88,11 @@ public class CustomerServiceImpl implements ICustomerService {
 
         Customer updated = repo.save(c);
 
-        return CustomerMapper.toDto(updated);
+        return CustomerMapper.toDto(updated); // Convert updated Entity to DTO
     }
 
+    
+    //Close customer account
     @Override
     public String deleteCustomer(int customerId) {
 

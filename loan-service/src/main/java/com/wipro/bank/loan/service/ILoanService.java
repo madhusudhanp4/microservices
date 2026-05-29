@@ -6,18 +6,18 @@ import com.wipro.bank.loan.dto.LoanDto;
 
 public interface ILoanService {
 
-    //  Bank processes loan request (approve/reject)
-    String processLoan(LoanDto dto);
+    // Process and approve/reject loan request based on eligibility rules
+    String applyLoan(LoanDto dto);
 
-    //  Bank views all loans of a customer (history)
-    List<LoanDto> getCustomerLoans(int customerId);
+    // Get complete loan history of a customer
+    List<LoanDto> getLoanHistory(int customerId);
 
-    //  Bank checks customer's total active loan amount
-    double getTotalActiveLoanAmount(int customerId);
+    // Get total outstanding loan amount for a customer
+    double getTotalOutstandingLoan(int customerId);
 
-    //  Bank marks loan as CLOSED (when customer repays)
+    // Close loan only when all dues are cleared
     String closeLoan(int loanId);
 
-    //  Bank views only ACTIVE loans of a customer
+    // Get currently active (ongoing) loans of a customer
     List<LoanDto> getActiveLoans(int customerId);
 }

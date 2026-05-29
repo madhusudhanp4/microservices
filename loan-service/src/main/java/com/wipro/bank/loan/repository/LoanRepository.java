@@ -10,5 +10,13 @@ import com.wipro.bank.loan.entity.Loan;
 @Repository
 public interface LoanRepository extends JpaRepository<Loan, Integer> {
 
-	  List<Loan> findByCustomerCustomerId(int customerId);
+	/*
+	 * Fetch loans of a specific customer instead of getting all records 
+	 * Helps improve performance and apply customer-based logic easily
+	 */
+
+	List<Loan> findByCustomerId(int customerId);
+	 
+	
+	//List<Loan> findByCustomerCustomerId(int customerId);
 }

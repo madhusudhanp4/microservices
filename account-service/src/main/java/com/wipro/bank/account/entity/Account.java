@@ -29,10 +29,10 @@ public class Account {
 	private double balance;
 	private String branchName;
 	
-	private int customerId; 
-
 
 	private String status;
+	
+	private int customerId;
 	/*
 	 * //Many accounts belong to one customer
 	 * 

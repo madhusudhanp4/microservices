@@ -18,13 +18,14 @@ public class LoanDto {
 	@NotBlank(message = "Loan type is required")
 	private String loanType;
 	
-	@Positive(message = "Loan amount must be positive")
+	@Positive(message = "Loan amount must be greater than 0")
 	private double loanAmount;
 	
-	@Positive(message = "Interest rate must be positive")
+	@Positive(message = "Interest rate must be greater than 0")
 	private double interestRate;
 	
 	
+	//to link loan with customer
 	private int customerId;
 	
 	private String loanStatus; 

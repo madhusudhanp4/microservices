@@ -14,80 +14,100 @@ import com.wipro.bank.account.mapper.TransactionMapper;
 import com.wipro.bank.account.repository.AccountRepository;
 import com.wipro.bank.account.repository.TransactionRepository;
 
+/**
+ * Service implementation for handling transaction operations
+ */
 @Service
 public class TransactionServiceImpl implements ITransactionService {
 
     @Autowired
     private TransactionRepository txnRepo;
-    
-    //Repo to interact with account
+
     @Autowired
     private AccountRepository accountRepo;
 
-    //Deposit money to account
+    /**
+     * Deposit money into account
+     */
     @Override
     public String deposit(String accountNumber, double amount) {
 
-        Account acc = accountRepo.findByAccountNumber(accountNumber);
+        // Fetch account
+        Account account = accountRepo.findByAccountNumber(accountNumber);
 
-        if (acc == null) return "Account not found";
+        if (account == null) {
+            return "Account not found";
+        }
 
-        acc.setBalance(acc.getBalance() + amount);
-        accountRepo.save(acc);
+        // Update balance
+        account.setBalance(account.getBalance() + amount);
+        accountRepo.save(account);
 
+        // Create transaction record
         Transaction txn = new Transaction();
         txn.setTransactionType("DEPOSIT");
         txn.setAmount(amount);
         txn.setTransactionDate(LocalDate.now());
-        txn.setAccountNumber(accountNumber);
 
+        // Link with account
+        txn.setAccount(account);
 
         txnRepo.save(txn);
 
-        return "Amount deposited";
+        return "Amount deposited successfully. Updated balance is: " 
+                + account.getBalance();
     }
 
-    //WITHDRAW MONEY FROM ACCOUNT
+    /**
+     * Withdraw money from account
+     */
     @Override
     public String withdraw(String accountNumber, double amount) {
 
-        Account acc = accountRepo.findByAccountNumber(accountNumber);
+        // Fetch account
+        Account account = accountRepo.findByAccountNumber(accountNumber);
 
-        if (acc == null) return "Account not found";
+        if (account == null) {
+            return "Account not found";
+        }
 
-        if (acc.getBalance() < amount) {
+        // Business rule: insufficient balance
+        if (account.getBalance() < amount) {
             return "Insufficient balance";
         }
 
-        acc.setBalance(acc.getBalance() - amount);
-        accountRepo.save(acc);
+        // Update balance
+        account.setBalance(account.getBalance() - amount);
+        accountRepo.save(account);
 
+        // Create transaction record
         Transaction txn = new Transaction();
         txn.setTransactionType("WITHDRAW");
         txn.setAmount(amount);
         txn.setTransactionDate(LocalDate.now());
-        txn.setAccountNumber(accountNumber);
-        
+
+        txn.setAccount(account);
 
         txnRepo.save(txn);
 
-        return "Amount withdrawn";
+        return "Amount withdrawn successfully. Updated balance is: " 
+                + account.getBalance();
     }
 
-    //GET TRANSACTION BY ACCOUNT NUMBER
+    /**
+     * Get all transactions for a given account
+     */
     @Override
     public List<TransactionDto> getTransactionsByAccount(String accountNumber) {
 
-    	List<Transaction> list = txnRepo.findAll();
-    	List<TransactionDto> result = new ArrayList<>();
+        List<Transaction> transactions = 
+                txnRepo.findByAccountAccountNumber(accountNumber);
 
-    	for (Transaction t : list) {
+        List<TransactionDto> result = new ArrayList<>();
 
-    	    if (t.getAccountNumber().equals(accountNumber)) {
-
-    	        result.add(TransactionMapper.toDto(t));
-    	    }
-    	}
+        for (Transaction txn : transactions) {
+            result.add(TransactionMapper.toDto(txn));
+        }
 
         return result;
     }

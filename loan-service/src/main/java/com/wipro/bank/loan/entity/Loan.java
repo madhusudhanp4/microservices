@@ -25,10 +25,11 @@ public class Loan {
 	private String loanType;
 	private double loanAmount;
 	private double interestRate;
-
+	private String loanStatus;
+	
+	
 	private int customerId;
 	
-	private String loanStatus;
 
 	/*
 	 * // Status: ACTIVE / CLOSED private String loanStatus;

@@ -26,7 +26,7 @@ public class CustomerController {
 
     //Create customer
     @PostMapping("/create")
-    public CustomerDto create(@Valid @RequestBody CustomerDto dto) {
+    public String create(@Valid @RequestBody CustomerDto dto) {
         return service.createCustomer(dto);
     }
 
@@ -41,16 +41,6 @@ public class CustomerController {
     public List<CustomerDto> getAll() {
         return service.getAllCustomers();
     }
-
-    // Update customer
-    @PutMapping("/update/{id}")
-    public CustomerDto update(@PathVariable int id,@Valid  @RequestBody CustomerDto dto) {
-        return service.updateCustomer(id, dto);
-    }
-
-    // Close (delete) customer
-    @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable int id) {
-        return service.deleteCustomer(id);
-    }
+    
+    
 }

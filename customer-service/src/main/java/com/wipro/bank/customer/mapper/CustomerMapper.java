@@ -9,11 +9,11 @@ public class CustomerMapper {
 
         CustomerDto dto = new CustomerDto();
 
-        dto.setCustomerId(c.getCustomerId());
         dto.setCustomerName(c.getCustomerName());
         dto.setMobile(c.getMobile());
         dto.setEmail(c.getEmail());
         dto.setAddress(c.getAddress());
+        dto.setStatus(c.getStatus());
 
         return dto;
     }
@@ -26,7 +26,7 @@ public class CustomerMapper {
         c.setMobile(dto.getMobile());
         c.setEmail(dto.getEmail());
         c.setAddress(dto.getAddress());
-        c.setStatus("ACTIVE");
+        c.setStatus(dto.getStatus());
 
         return c;
     }

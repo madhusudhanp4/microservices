@@ -1,4 +1,4 @@
-package com.wipro.bank.customer.dto;
+package com.wipro.bank.account.service;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -14,6 +14,7 @@ import lombok.Setter;
 //@AllArgsConstructor
 
 public class CustomerDto {
+	private int customerId;
 
 	@NotBlank(message = "Customer name is required")
 	@Size(min = 4, message = "Customer name must be at least 4 characters")
@@ -24,11 +25,5 @@ public class CustomerDto {
 	
 	@Email(message = "Invalid email format")
 	private String email;
-	
-	@NotBlank(message = "Address cannot be empty")
-	@Size(min = 6, message = "Customer name must be at least 4 characters")
-	private String address;
-
-	private String status;
 
 }

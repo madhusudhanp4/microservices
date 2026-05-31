@@ -7,5 +7,7 @@ import com.wipro.bank.customer.entity.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
+	
+	
 
 }

@@ -1,4 +1,4 @@
-package com.wipro.bank.customer.dto;
+package com.wipro.bank.loan.service;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

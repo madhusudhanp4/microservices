@@ -14,10 +14,6 @@ import lombok.Setter;
 
 public class AccountDto {
 
-	private int accountId;
-
-	private String accountNumber;
-
 	@NotBlank(message = "Account type is required")
 	@Pattern(regexp = "^(SAVINGS|CURRENT|LOAN)$", message = "Account type must be SAVINGS, CURRENT or LOAN")
 	private String accountType;

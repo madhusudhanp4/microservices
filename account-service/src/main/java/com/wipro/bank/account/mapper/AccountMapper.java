@@ -9,11 +9,11 @@ public class AccountMapper {
 
 	    AccountDto dto = new AccountDto();
 
-	    dto.setAccountId(acc.getAccountId());
-	    dto.setAccountNumber(acc.getAccountNumber());
 	    dto.setAccountType(acc.getAccountType());
 	    dto.setBalance(acc.getBalance());
 	    dto.setBranchName(acc.getBranchName());
+	    
+	    dto.setStatus(acc.getStatus());
 
 	    dto.setCustomerId(acc.getCustomerId()); 
 
@@ -24,13 +24,13 @@ public class AccountMapper {
 	   
 		Account acc = new Account();
 	    
-	    acc.setCustomerId(dto.getCustomerId());
-	   
 	    acc.setAccountType(dto.getAccountType());
 	    acc.setBalance(dto.getBalance());
 	    acc.setBranchName(dto.getBranchName());
 	    
-	    acc.setStatus("ACTIVE");
+	    acc.setStatus(dto.getStatus());
+	    
+	    acc.setCustomerId(dto.getCustomerId());
 	    
 	    return acc;
 	}

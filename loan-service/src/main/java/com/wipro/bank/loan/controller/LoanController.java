@@ -25,14 +25,14 @@ public class LoanController {
 
     // Apply for loan (approve / reject based on rules)
     @PostMapping("/apply")
-    public String apply(@Valid @RequestBody LoanDto dto) {
+    public String applyLoan(@Valid @RequestBody LoanDto dto) {
 
         return service.applyLoan(dto);
     }
 
     // Get complete loan history of a customer
-    @GetMapping("/customer/{customerId}")
-    public List<LoanDto> getLoans(@PathVariable int customerId) {
+    @GetMapping("/history/{customerId}")
+    public List<LoanDto> getHistory(@PathVariable int customerId) {
 
         return service.getLoanHistory(customerId);
     }
@@ -46,14 +46,14 @@ public class LoanController {
 
     // Get total outstanding loan amount
     @GetMapping("/total/{customerId}")
-    public double getTotal(@PathVariable int customerId) {
+    public double getTotalLoan(@PathVariable int customerId) {
 
         return service.getTotalOutstandingLoan(customerId);
     }
 
-    // Close loan (after repayment)
+    // Close loan (after repayments)
     @PutMapping("/close/{loanId}")
-    public String close(@PathVariable int loanId) {
+    public String closeLoan(@PathVariable int loanId) {
 
         return service.closeLoan(loanId);
     }

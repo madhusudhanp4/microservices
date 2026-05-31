@@ -30,12 +30,14 @@ public class Transaction {
 	private double amount;
 	private LocalDate transactionDate;
 	
-	private String accountNumber;
 
 	private String status;
 
+	//Many transactions belong to one account
 	@ManyToOne
 	@JoinColumn(name = "account_id")
-	private Account account;
+	private String accountNumber;
+
+
 
 }

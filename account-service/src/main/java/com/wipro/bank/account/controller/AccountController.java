@@ -26,14 +26,14 @@ public class AccountController {
 
 	//  Create account
 	@PostMapping("/create")
-	public AccountDto create(@Valid @RequestBody AccountDto dto) {
+	public String create(@Valid @RequestBody AccountDto dto) {
 		return service.createAccount(dto);
 	}
 
 	//  Get account
 	@GetMapping("/{accountNumber}")
 	public AccountDto getAccount(@PathVariable String accountNumber) {
-		return service.getAccountByNumber(accountNumber);
+		return service.getAccount(accountNumber);
 	}
 
 	//  Get all accounts
@@ -45,20 +45,7 @@ public class AccountController {
 	//  Check balance
 	@GetMapping("/balance/{accountNumber}")
 	public double getBalance(@PathVariable String accountNumber) {
-		return service.getBalancebyNumber(accountNumber);
+		return service.getBalance(accountNumber);
 	}
 
-	//  Update account
-	@PutMapping("/update/{accountNumber}")
-	public AccountDto update(@PathVariable String accountNumber,
-			@Valid @RequestBody AccountDto dto) {
-		return service.updateAccountDetails(accountNumber, dto);
-	}
-
-	
-	//  Close account
-	@DeleteMapping("/close/{accountNumber}")
-	public String close(@PathVariable String accountNumber) {
-		return service.closeAccount(accountNumber);
-	}
 }

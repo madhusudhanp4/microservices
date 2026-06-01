@@ -32,12 +32,16 @@ public class Transaction {
 	
 
 	private String status;
-
-	//Many transactions belong to one account
-	@ManyToOne
-	@JoinColumn(name = "account_id")
+	
 	private String accountNumber;
 
-
+	/*
+	 * //Many transactions belong to one account
+	 * 
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "account_id") private String accountNumber;
+	 * 
+	 */
 
 }

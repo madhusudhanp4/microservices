@@ -11,7 +11,7 @@ public interface ITransactionService {
 
 	String withdraw(String accountNumber, double amount);
 
-	List<TransactionDto> getTransactionsByAccount(String accountNumber);
+	List<TransactionDto> getTransactionsHistory(String accountNumber);
 
 
 }

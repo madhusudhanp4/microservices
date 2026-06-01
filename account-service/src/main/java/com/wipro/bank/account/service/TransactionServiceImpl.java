@@ -101,9 +101,9 @@ public class TransactionServiceImpl implements ITransactionService {
 
 	//GET TRANSACTION BY ACCOUNT NUMBER
 	@Override
-	public List<TransactionDto> getTransactionsByAccount(String accountNumber) {
+	public List<TransactionDto> getTransactionsHistory(String accountNumber) {
 
-		List<Transaction> list = txnRepo.findByAccountAccountNumber(accountNumber);
+		List<Transaction> list = txnRepo.findByAccountNumber(accountNumber);
 
 		List<TransactionDto> dtoList = new ArrayList<>();
 

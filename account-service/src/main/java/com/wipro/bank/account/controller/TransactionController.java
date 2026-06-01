@@ -35,6 +35,6 @@ public class TransactionController {
     //  Get transaction history
     @GetMapping("/{accountNumber}")
     public List<TransactionDto> getTransactions(@PathVariable String accountNumber) {
-        return service.getTransactionsByAccount(accountNumber);
+        return service.getTransactionsHistory(accountNumber);
     }
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,6 +11,8 @@ import com.wipro.bank.account.dto.AccountDto;
 import com.wipro.bank.account.entity.Account;
 import com.wipro.bank.account.mapper.AccountMapper;
 import com.wipro.bank.account.repository.AccountRepository;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 /*
  * Service implementation for Account operations.
@@ -21,6 +22,8 @@ import com.wipro.bank.account.repository.AccountRepository;
 @Service
 public class AccountServiceImpl implements IAccountService {
 
+
+	
     @Autowired
     private AccountRepository accountRepo;
     
@@ -36,6 +39,7 @@ public class AccountServiceImpl implements IAccountService {
     
     
     @Override
+    @CircuitBreaker(name = "customerService", fallbackMethod="customerFallback")
     public String createAccount(AccountDto dto) {
 
     	
@@ -59,6 +63,11 @@ public class AccountServiceImpl implements IAccountService {
         return "Account Created Successfully";
     }
     
+    
+    public String customerFallback(AccountDto dto, Exception e) {
+    	
+    	return "Customer Service is Down";
+    }
     
     
 

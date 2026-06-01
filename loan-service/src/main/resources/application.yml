@@ -3,7 +3,7 @@ spring:
     name: LOAN-SERVICE
 
   datasource:
-    url: jdbc:mysql://localhost:3306/wiprobankdb
+    url: jdbc:mysql://localhost:3306/wiprobankdbmicro
     username: root
     password: root
 

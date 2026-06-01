@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,6 +11,8 @@ import com.wipro.bank.loan.dto.LoanDto;
 import com.wipro.bank.loan.entity.Loan;
 import com.wipro.bank.loan.mapper.LoanMapper;
 import com.wipro.bank.loan.repository.LoanRepository;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 /**
  * Service implementation for Loan operations
@@ -28,10 +29,12 @@ public class LoanServiceImpl implements ILoanService {
 	/**
 	 * Apply loan (based on simple business rules)
 	 */
+	
 	@Override
+	@CircuitBreaker(name = "CustomerService", fallbackMethod = "customerFallback")
 	public String applyLoan(LoanDto dto) {
 
-
+		
 		CustomerDto customer = restTemplate.getForObject("http://CUSTOMER-SERVICE/customer/" + dto.getCustomerId(), CustomerDto.class );
 
 		if (customer == null) {

@@ -17,9 +17,6 @@ public class AccountServiceApplication {
 
 	
 	
-	
-
-
 	/**
 	 * RestTemplate Bean for calling other microservices
 	 */

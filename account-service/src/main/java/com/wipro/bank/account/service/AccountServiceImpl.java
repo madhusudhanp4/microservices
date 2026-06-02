@@ -40,7 +40,7 @@ public class AccountServiceImpl implements IAccountService {
     
 	//CIRCUIT BREAKER 
     @Override
-    @CircuitBreaker(name = "customerService", fallbackMethod="customerFallback")
+    @CircuitBreaker(name = "CustomerService", fallbackMethod="customerFallback")
     public String createAccount(AccountDto dto) {
 
     	

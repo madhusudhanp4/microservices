@@ -9,20 +9,57 @@ spring:
     gateway:
       routes:
 
-        - id: CUSTOMER-SERVICE
+        - id: CUSTOMER-API
           uri: lb://CUSTOMER-SERVICE
           predicates:
             - Path=/customer/**
 
-        - id: ACCOUNT-SERVICE
+        - id: ACCOUNT-API
           uri: lb://ACCOUNT-SERVICE
           predicates:
-            - Path=/account/**, /transaction/**
+            - Path=/account/**
 
-        - id: LOAN-SERVICE
+        - id: TRANSACTION-API
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+            - Path=/transaction/**
+
+        - id: LOAN-API
           uri: lb://LOAN-SERVICE
           predicates:
             - Path=/loan/**
+
+        - id: CUSTOMER-DOC
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - Path=/v3/api-docs/customer
+          filters:
+            - RewritePath=/v3/api-docs/customer,/v3/api-docs
+
+        - id: ACCOUNT-DOC
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+            - Path=/v3/api-docs/account
+          filters:
+            - RewritePath=/v3/api-docs/account,/v3/api-docs
+
+        - id: LOAN-DOC
+          uri: lb://LOAN-SERVICE
+          predicates:
+            - Path=/v3/api-docs/loan
+          filters:
+            - RewritePath=/v3/api-docs/loan,/v3/api-docs
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: customer
+        url: /v3/api-docs/customer
+      - name: account
+        url: /v3/api-docs/account
+      - name: loan
+        url: /v3/api-docs/loan
 
 eureka:
   client:

@@ -31,7 +31,7 @@ public class LoanServiceImpl implements ILoanService {
 	 */
 	
 	@Override
-	@CircuitBreaker(name = "CustomerService", fallbackMethod = "customerFallback")
+	@CircuitBreaker(name = "customerService", fallbackMethod = "customerFallback")
 	public String applyLoan(LoanDto dto) {
 
 		

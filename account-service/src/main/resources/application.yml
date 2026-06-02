@@ -17,7 +17,7 @@ server:
 
 customer:
   service:
-    url: http://CUSTOMER-SERVICE/customers
+    url: http://CUSTOMER-SERVICE/customer
 
 eureka:
   client:

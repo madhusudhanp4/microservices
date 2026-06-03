@@ -1,4 +1,4 @@
-package com.wipro.bank.customer.entity;
+package com.wipro.bank.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

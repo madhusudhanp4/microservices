@@ -1,7 +1,7 @@
-package com.wipro.bank.customer.mapper;
+package com.wipro.bank.mapper;
 
-import com.wipro.bank.customer.dto.CustomerDto;
-import com.wipro.bank.customer.entity.Customer;
+import com.wipro.bank.dto.CustomerDto;
+import com.wipro.bank.entity.Customer;
 
 public class CustomerMapper {
 

@@ -1,4 +1,4 @@
-package com.wipro.bank.customer.service;
+package com.wipro.bank.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wipro.bank.customer.dto.CustomerDto;
-import com.wipro.bank.customer.entity.Customer;
-import com.wipro.bank.customer.mapper.CustomerMapper;
-import com.wipro.bank.customer.repository.CustomerRepository;
+import com.wipro.bank.dto.CustomerDto;
+import com.wipro.bank.entity.Customer;
+import com.wipro.bank.mapper.CustomerMapper;
+import com.wipro.bank.repository.CustomerRepository;
 
 @Service
 public class CustomerServiceImpl implements ICustomerService {

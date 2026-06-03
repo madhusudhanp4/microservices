@@ -1,8 +1,8 @@
-package com.wipro.bank.customer.service;
+package com.wipro.bank.service;
 
 import java.util.List;
 
-import com.wipro.bank.customer.dto.CustomerDto;
+import com.wipro.bank.dto.CustomerDto;
 
 public interface ICustomerService {
 
